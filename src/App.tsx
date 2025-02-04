@@ -10,7 +10,7 @@ import Projects from "@/pages/Projects";
 import Contact from "@/pages/Contact";
 import Privacy from "@/pages/Privacy";
 import Imprint from "@/pages/Imprint";
-import { NotFound } from "@/pages/NotFound";
+import NotFound from "@/pages/NotFound";
 import { useTheme } from "@/components/theme-provider";
 
 function App() {

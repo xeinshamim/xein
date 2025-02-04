@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import Markdown from "react-markdown";
-import { NotFound } from "./NotFound";
+import NotFound from "./NotFound";
 
 const Note = () => {
   const { id } = useParams();
