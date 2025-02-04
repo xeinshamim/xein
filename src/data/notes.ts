@@ -77,4 +77,112 @@ type Status = 'active' | 'inactive';
     date: "2024-02-18",
     tags: ["TypeScript", "JavaScript", "Programming"],
   },
+  {
+    id: 3,
+    title: "Modern CSS Layout Techniques",
+    content: `
+# Modern CSS Layout Techniques
+
+Learn about modern CSS layout techniques that will help you build better websites.
+
+## CSS Grid
+
+CSS Grid is perfect for two-dimensional layouts:
+
+\`\`\`css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+\`\`\`
+
+## Flexbox
+
+Flexbox is great for one-dimensional layouts:
+
+\`\`\`css
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+\`\`\`
+`,
+    excerpt: "Explore modern CSS layout techniques including Grid and Flexbox.",
+    date: "2024-02-15",
+    tags: ["CSS", "Web Design", "Layout"],
+  },
+  {
+    id: 4,
+    title: "State Management with Redux Toolkit",
+    content: `
+# State Management with Redux Toolkit
+
+Redux Toolkit is the official, opinionated toolset for Redux development.
+
+## Setting up the Store
+
+\`\`\`typescript
+import { configureStore } from '@reduxjs/toolkit';
+
+export const store = configureStore({
+  reducer: {
+    // your reducers here
+  },
+});
+\`\`\`
+
+## Creating a Slice
+
+\`\`\`typescript
+import { createSlice } from '@reduxjs/toolkit';
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: 0,
+  reducers: {
+    increment: (state) => state + 1,
+    decrement: (state) => state - 1,
+  },
+});
+\`\`\`
+`,
+    excerpt: "Learn how to manage application state effectively with Redux Toolkit.",
+    date: "2024-02-12",
+    tags: ["Redux", "State Management", "React"],
+  },
+  {
+    id: 5,
+    title: "Testing React Components",
+    content: `
+# Testing React Components
+
+Learn how to test your React components effectively using Jest and React Testing Library.
+
+## Setting Up
+
+\`\`\`typescript
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import MyComponent from './MyComponent';
+
+describe('MyComponent', () => {
+  it('renders correctly', () => {
+    render(<MyComponent />);
+    expect(screen.getByText('Hello')).toBeInTheDocument();
+  });
+});
+\`\`\`
+
+## Best Practices
+
+1. Test behavior, not implementation
+2. Use semantic queries
+3. Write accessible tests
+`,
+    excerpt: "A comprehensive guide to testing React components with Jest and React Testing Library.",
+    date: "2024-02-10",
+    tags: ["Testing", "React", "Jest"],
+  }
 ];
