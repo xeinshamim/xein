@@ -1,28 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { articles } from "@/data/articles";
 
 const LatestArticles = () => {
-  const articles = [
-    {
-      id: 1,
-      title: "Building Scalable Web Applications",
-      excerpt: "Learn how to architect web applications that scale.",
-      date: "2024-02-19",
-    },
-    {
-      id: 2,
-      title: "The Future of Web Development",
-      excerpt: "Exploring upcoming trends and technologies.",
-      date: "2024-02-17",
-    },
-    {
-      id: 3,
-      title: "Optimizing React Performance",
-      excerpt: "Tips and tricks for faster React applications.",
-      date: "2024-02-14",
-    },
-  ];
+  // Get the 3 most recent articles
+  const latestArticles = [...articles]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   return (
     <section className="py-20 px-4 bg-muted/50">
@@ -37,23 +22,33 @@ const LatestArticles = () => {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article) => (
+          {latestArticles.map((article) => (
             <article
               key={article.id}
               className="glass p-6 rounded-lg transition-transform hover:-translate-y-1"
             >
-              <time className="text-sm text-muted-foreground">
+              <span className="px-3 py-1 bg-primary/10 rounded-full text-sm mb-3 inline-block">
+                {article.category}
+              </span>
+              <time className="text-sm text-muted-foreground block">
                 {article.date}
               </time>
               <h3 className="text-xl font-semibold mt-2 mb-3">
                 {article.title}
               </h3>
-              <p className="text-muted-foreground mb-4">{article.excerpt}</p>
-              <Link to={`/articles/${article.id}`}>
-                <Button variant="link" className="p-0">
-                  Read More
-                </Button>
-              </Link>
+              <p className="text-muted-foreground mb-4 line-clamp-2">
+                {article.excerpt}
+              </p>
+              <div className="flex items-center justify-between">
+                <Link to={`/articles/${article.id}`}>
+                  <Button variant="link" className="p-0">
+                    Read More
+                  </Button>
+                </Link>
+                <span className="text-sm text-muted-foreground">
+                  {article.readingTime}
+                </span>
+              </div>
             </article>
           ))}
         </div>
