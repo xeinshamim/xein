@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,13 +27,17 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={cn(
+        "fixed top-0 w-full z-50 transition-all duration-300",
         isScrolled ? "glass py-2" : "bg-transparent py-4"
-      }`}
+      )}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold">
+          <Link 
+            to="/" 
+            className="text-2xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600"
+          >
             Portfolio
           </Link>
 
@@ -41,7 +47,12 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="hover:text-primary transition-colors"
+                className={cn(
+                  "link-underline py-2",
+                  location.pathname === link.path
+                    ? "text-primary font-medium"
+                    : "text-foreground/80 hover:text-foreground"
+                )}
               >
                 {link.name}
               </Link>
@@ -67,7 +78,12 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="block hover:text-primary transition-colors"
+                  className={cn(
+                    "block transition-colors",
+                    location.pathname === link.path
+                      ? "text-primary font-medium"
+                      : "text-foreground/80 hover:text-foreground"
+                  )}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
