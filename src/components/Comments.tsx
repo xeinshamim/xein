@@ -1,6 +1,13 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+declare global {
+  interface Window {
+    DISQUS?: any;
+    disqus_config?: Function;
+  }
+}
+
 interface CommentsProps {
   className?: string;
 }

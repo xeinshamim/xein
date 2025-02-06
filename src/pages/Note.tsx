@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import Markdown from "react-markdown";
+import Comments from "@/components/Comments";
 import NotFound from "./NotFound";
 
 const Note = () => {
@@ -15,7 +16,7 @@ const Note = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen gradient-bg">
       <Navbar />
       <main className="container mx-auto px-4 py-20">
         <article className="max-w-4xl mx-auto">
@@ -33,13 +34,14 @@ const Note = () => {
             <time className="text-sm text-muted-foreground block mb-2">
               {note.date}
             </time>
-            <h1 className="text-4xl font-bold mb-8">{note.title}</h1>
+            <h1 className="text-4xl font-bold gradient-text">{note.title}</h1>
           </div>
           <Card>
             <CardContent className="p-6 prose dark:prose-invert max-w-none">
               <Markdown>{note.content}</Markdown>
             </CardContent>
           </Card>
+          <Comments className="mt-12" />
         </article>
       </main>
       <Footer />

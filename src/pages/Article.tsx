@@ -17,12 +17,12 @@ const Article = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen gradient-bg">
       <Navbar />
       <main className="container mx-auto px-4 py-20">
         <article className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
+            <h1 className="text-4xl font-bold mb-4 gradient-text">{article.title}</h1>
             <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
               <span className="px-3 py-1 bg-primary/10 rounded-full">
                 {article.category}
