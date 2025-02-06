@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        heading: ["Inter", "sans-serif"], // Adding the heading font family
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
