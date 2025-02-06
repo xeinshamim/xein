@@ -31,20 +31,6 @@
       gtag('js', new Date());
       gtag('config', 'G-XXXXXXXXXX');
     </script>
-    
-    <!-- Disqus -->
-    <script>
-      window.disqus_config = function () {
-        this.page.url = window.location.href;
-        this.page.identifier = window.location.pathname;
-      };
-      (function() {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://YOUR-DISQUS-SHORTNAME.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>
