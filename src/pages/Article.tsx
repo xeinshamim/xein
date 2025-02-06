@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Clock } from "lucide-react";
 import Markdown from "react-markdown";
+import Comments from "@/components/Comments";
 import NotFound from "./NotFound";
 import { articles } from "@/data/articles";
 
@@ -36,13 +37,14 @@ const Article = () => {
               </div>
             </div>
           </div>
-          <Card>
+          <Card className="mb-12">
             <CardContent className="p-8">
               <div className="prose dark:prose-invert max-w-none">
                 <Markdown>{article.content}</Markdown>
               </div>
             </CardContent>
           </Card>
+          <Comments className="mt-12" />
         </article>
       </main>
       <Footer />
