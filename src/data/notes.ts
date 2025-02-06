@@ -184,5 +184,62 @@ describe('MyComponent', () => {
     excerpt: "A comprehensive guide to testing React components with Jest and React Testing Library.",
     date: "2024-02-10",
     tags: ["Testing", "React", "Jest"],
+  },
+  {
+    id: 6,
+    title: "Understanding Micro-Frontends",
+    content: `
+# Understanding Micro-Frontends
+
+Micro-frontends architecture is gaining popularity. Here's what you need to know:
+
+## Key Concepts
+
+- Independent deployments
+- Team autonomy
+- Technology agnostic
+- Isolated codebases
+
+## Implementation Approaches
+
+1. Build-time integration
+2. Run-time integration
+3. Server-side composition
+
+## Best Practices
+
+- Clear domain boundaries
+- Shared design system
+- Consistent user experience
+- Performance optimization
+`,
+    excerpt: "Learn about micro-frontends architecture and implementation strategies.",
+    date: "2024-02-08",
+    tags: ["Architecture", "Frontend", "Micro-Frontends"],
+  },
+  {
+    id: 7,
+    title: "Web Performance Optimization",
+    content: `
+# Web Performance Optimization
+
+Essential techniques for optimizing web application performance:
+
+## Core Web Vitals
+
+- LCP (Largest Contentful Paint)
+- FID (First Input Delay)
+- CLS (Cumulative Layout Shift)
+
+## Optimization Techniques
+
+1. Image optimization
+2. Code splitting
+3. Lazy loading
+4. Caching strategies
+`,
+    excerpt: "Discover key techniques for optimizing web application performance.",
+    date: "2024-02-06",
+    tags: ["Performance", "Optimization", "Web Development"],
   }
 ];

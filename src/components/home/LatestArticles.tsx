@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { articles } from "@/data/articles";
@@ -9,7 +10,7 @@ const LatestArticles = () => {
     .slice(0, 3);
 
   return (
-    <section className="py-20 px-4 bg-navy-900/50">
+    <section className="py-20 px-4 bg-accent/5">
       <div className="container mx-auto max-w-6xl">
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-3xl font-bold">Latest Articles</h2>
@@ -24,12 +25,12 @@ const LatestArticles = () => {
           {latestArticles.map((article) => (
             <article
               key={article.id}
-              className="bg-navy-800/50 backdrop-blur-sm border border-white/10 p-6 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-navy-500/20"
+              className="bg-card border border-border/50 p-6 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <span className="px-3 py-1 bg-navy-700/50 text-white/80 rounded-full text-sm mb-3 inline-block">
+              <span className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm mb-3 inline-block">
                 {article.category}
               </span>
-              <time className="text-sm text-white/60 block">
+              <time className="text-sm text-muted-foreground block">
                 {article.date}
               </time>
               <Link to={`/articles/${article.id}`}>
@@ -37,7 +38,7 @@ const LatestArticles = () => {
                   {article.title}
                 </h3>
               </Link>
-              <p className="text-white/70 mb-4 line-clamp-2">
+              <p className="text-muted-foreground mb-4 line-clamp-2">
                 {article.excerpt}
               </p>
               <div className="flex items-center justify-between">
@@ -48,7 +49,7 @@ const LatestArticles = () => {
                   Read More
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-                <span className="text-sm text-white/60">
+                <span className="text-sm text-muted-foreground">
                   {article.readingTime}
                 </span>
               </div>

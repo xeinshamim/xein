@@ -186,5 +186,66 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
     date: "2024-02-11",
     category: "React",
     readingTime: "15 min read",
+  },
+  {
+    id: 6,
+    title: "Advanced TypeScript Patterns",
+    content: `
+# Advanced TypeScript Patterns
+
+Discover advanced TypeScript patterns and techniques:
+
+## Generic Types
+
+\`\`\`typescript
+type Container<T> = {
+  value: T;
+  tag: string;
+};
+\`\`\`
+
+## Conditional Types
+
+\`\`\`typescript
+type IsString<T> = T extends string ? true : false;
+\`\`\`
+
+## Best Practices
+
+1. Use strict mode
+2. Leverage type inference
+3. Document complex types
+`,
+    excerpt: "Explore advanced TypeScript patterns and improve your type system knowledge.",
+    date: "2024-02-09",
+    category: "TypeScript",
+    readingTime: "10 min read",
+  },
+  {
+    id: 7,
+    title: "Serverless Architecture Patterns",
+    content: `
+# Serverless Architecture Patterns
+
+Learn about common serverless architecture patterns:
+
+## Event-Driven Architecture
+
+- Event sources
+- Function triggers
+- Event routing
+- Error handling
+
+## Best Practices
+
+1. Function size
+2. Cold start optimization
+3. Error handling
+4. Monitoring
+`,
+    excerpt: "Understand serverless architecture patterns and best practices.",
+    date: "2024-02-07",
+    category: "Architecture",
+    readingTime: "8 min read",
   }
 ];

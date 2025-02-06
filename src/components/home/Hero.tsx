@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -6,11 +7,11 @@ const Hero = () => {
   return (
     <section className="min-h-screen relative flex items-center justify-center overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent via-background to-background" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy-700 via-background to-background" />
       
       <div className="container px-4 relative animate-fade-in">
         <div className="max-w-3xl mx-auto text-center space-y-8">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-navy-500">
             Welcome to My Portfolio
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground">
@@ -35,8 +36,8 @@ const Hero = () => {
 
       {/* Decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-navy-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-navy-700/10 rounded-full blur-3xl" />
       </div>
     </section>
   );
