@@ -1,24 +1,13 @@
 
-import { useState, useEffect } from "react";
-import { ArrowRight, Calendar, Clock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { loadArticles } from "@/utils/contentLoader";
-import type { ArticleMeta } from "@/utils/contentLoader";
+import { articles } from "@/data/articles";
 
 const LatestArticles = () => {
-  const [latestArticles, setLatestArticles] = useState<ArticleMeta[]>([]);
-
-  useEffect(() => {
-    const fetchArticles = async () => {
-      const articles = await loadArticles();
-      const sortedArticles = articles
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 3);
-      setLatestArticles(sortedArticles);
-    };
-
-    fetchArticles();
-  }, []);
+  // Get the 3 most recent articles
+  const latestArticles = [...articles]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   return (
     <section className="py-20 px-4 bg-accent/5">
@@ -32,43 +21,38 @@ const LatestArticles = () => {
             </button>
           </Link>
         </div>
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {latestArticles.map((article) => (
             <article
               key={article.id}
-              className="bg-card hover:bg-accent/5 border border-border/50 rounded-lg p-6 transition-all duration-200 hover:-translate-y-1"
+              className="bg-card border border-border/50 p-6 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                <span className="px-3 py-1 bg-primary/10 rounded-full">
-                  {article.category}
-                </span>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <time>{article.date}</time>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
-                  <span>{article.readingTime}</span>
-                </div>
-              </div>
-              <h3 className="text-2xl font-semibold mb-3 text-foreground">
-                <Link 
-                  to={`/articles/${article.id}`}
-                  className="hover:text-primary transition-colors"
-                >
+              <span className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm mb-3 inline-block">
+                {article.category}
+              </span>
+              <time className="text-sm text-muted-foreground block">
+                {article.date}
+              </time>
+              <Link to={`/articles/${article.id}`}>
+                <h3 className="text-xl font-semibold mt-2 mb-3 hover:text-primary transition-colors">
                   {article.title}
-                </Link>
-              </h3>
+                </h3>
+              </Link>
               <p className="text-muted-foreground mb-4 line-clamp-2">
                 {article.excerpt}
               </p>
-              <Link
-                to={`/articles/${article.id}`}
-                className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-              >
-                Read More
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+              <div className="flex items-center justify-between">
+                <Link 
+                  to={`/articles/${article.id}`}
+                  className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                >
+                  Read More
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+                <span className="text-sm text-muted-foreground">
+                  {article.readingTime}
+                </span>
+              </div>
             </article>
           ))}
         </div>

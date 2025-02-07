@@ -1,32 +1,14 @@
-
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Calendar, Clock } from "lucide-react";
+import Markdown from "react-markdown";
 import NotFound from "./NotFound";
-import { loadArticles } from "@/utils/contentLoader";
-import type { ArticleMeta } from "@/utils/contentLoader";
+import { articles } from "@/data/articles";
 
 const Article = () => {
   const { id } = useParams();
-  const [article, setArticle] = useState<(ArticleMeta & { content: string }) | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchArticle = async () => {
-      const articles = await loadArticles();
-      const foundArticle = articles.find((a) => a.id === Number(id));
-      setArticle(foundArticle || null);
-      setLoading(false);
-    };
-
-    fetchArticle();
-  }, [id]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const article = articles.find((a) => a.id === Number(id));
 
   if (!article) {
     return <NotFound />;
@@ -56,10 +38,9 @@ const Article = () => {
             </div>
           </div>
           <div className="card">
-            <div 
-              className="card-content prose dark:prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+            <div className="card-content prose dark:prose-invert max-w-none">
+              <Markdown>{article.content}</Markdown>
+            </div>
           </div>
         </article>
       </main>

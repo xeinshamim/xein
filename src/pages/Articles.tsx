@@ -1,23 +1,48 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ChevronRight } from "lucide-react";
-import { loadArticles } from "@/utils/contentLoader";
-import type { ArticleMeta } from "@/utils/contentLoader";
+
+interface Article {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  readingTime: string;
+}
 
 const Articles = () => {
-  const [articles, setArticles] = useState<ArticleMeta[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
-    const fetchArticles = async () => {
-      const loadedArticles = await loadArticles();
-      setArticles(loadedArticles);
+    // In a real application, this would be an API call
+    // For now, we'll simulate loading the markdown files
+    const loadArticles = async () => {
+      const articles = [
+        {
+          id: 1,
+          title: "Building Scalable Web Applications",
+          excerpt: "Learn how to architect web applications that can scale with your user base.",
+          date: "2024-02-19",
+          category: "Architecture",
+          readingTime: "8 min read"
+        },
+        {
+          id: 2,
+          title: "The Future of Web Development",
+          excerpt: "Exploring upcoming trends and technologies in web development.",
+          date: "2024-02-17",
+          category: "Technology",
+          readingTime: "6 min read"
+        }
+      ];
+      setArticles(articles);
     };
 
-    fetchArticles();
+    loadArticles();
   }, []);
 
   return (
@@ -45,12 +70,7 @@ const Articles = () => {
                 </div>
               </div>
               <h2 className="text-2xl font-semibold mb-3 text-foreground">
-                <Link
-                  to={`/articles/${article.id}`}
-                  className="hover:text-primary transition-colors"
-                >
-                  {article.title}
-                </Link>
+                {article.title}
               </h2>
               <p className="text-muted-foreground mb-4 leading-relaxed">
                 {article.excerpt}

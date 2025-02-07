@@ -1,24 +1,13 @@
 
-import { useState, useEffect } from "react";
-import { ArrowRight, Calendar, Tag } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { loadNotes } from "@/utils/contentLoader";
-import type { NoteMeta } from "@/utils/contentLoader";
+import { notes } from "@/data/notes";
 
 const LatestNotes = () => {
-  const [latestNotes, setLatestNotes] = useState<NoteMeta[]>([]);
-
-  useEffect(() => {
-    const fetchNotes = async () => {
-      const notes = await loadNotes();
-      const sortedNotes = notes
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 3);
-      setLatestNotes(sortedNotes);
-    };
-
-    fetchNotes();
-  }, []);
+  // Get the 3 most recent notes
+  const latestNotes = [...notes]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   return (
     <section className="py-20 px-4">
@@ -32,39 +21,35 @@ const LatestNotes = () => {
             </button>
           </Link>
         </div>
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {latestNotes.map((note) => (
             <article
               key={note.id}
-              className="bg-card hover:bg-accent/5 border border-border/50 rounded-lg p-6 transition-all duration-200 hover:-translate-y-1"
+              className="bg-card border border-border/50 p-6 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="flex flex-wrap gap-2 mb-4">
-                {note.tags.map((tag) => (
+              <div className="flex flex-wrap gap-2 mb-3">
+                {note.tags.slice(0, 2).map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center px-3 py-1 bg-primary/10 rounded-full text-sm"
+                    className="px-2 py-1 bg-accent text-accent-foreground rounded-full text-xs"
                   >
-                    <Tag className="w-3 h-3 mr-1" />
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                <Calendar className="w-4 h-4" />
-                <time>{note.date}</time>
-              </div>
-              <h3 className="text-2xl font-semibold mb-3 group">
-                <Link
-                  to={`/notes/${note.id}`}
-                  className="hover:text-primary transition-colors"
-                >
+              <time className="text-sm text-muted-foreground">{note.date}</time>
+              <Link to={`/notes/${note.id}`}>
+                <h3 className="text-xl font-semibold mt-2 mb-3 hover:text-primary transition-colors">
                   {note.title}
-                </Link>
-              </h3>
+                </h3>
+              </Link>
               <p className="text-muted-foreground mb-4 line-clamp-2">
                 {note.excerpt}
               </p>
-              <Link to={`/notes/${note.id}`} className="inline-flex items-center text-primary hover:text-primary/80 transition-colors">
+              <Link 
+                to={`/notes/${note.id}`}
+                className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+              >
                 Read More
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
