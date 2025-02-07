@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    Markdown.default({
+    Markdown({
       mode: 'html',
       markdownIt: {
         html: true,
