@@ -1,13 +1,24 @@
 
+import { useState, useEffect } from "react";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-import { articles } from "@/data/articles";
+import { loadArticles } from "@/utils/contentLoader";
+import type { ArticleMeta } from "@/utils/contentLoader";
 
 const LatestArticles = () => {
-  // Get the 3 most recent articles
-  const latestArticles = [...articles]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
+  const [latestArticles, setLatestArticles] = useState<ArticleMeta[]>([]);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const articles = await loadArticles();
+      const sortedArticles = articles
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 3);
+      setLatestArticles(sortedArticles);
+    };
+
+    fetchArticles();
+  }, []);
 
   return (
     <section className="py-20 px-4 bg-accent/5">

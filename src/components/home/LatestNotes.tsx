@@ -1,13 +1,24 @@
 
+import { useState, useEffect } from "react";
 import { ArrowRight, Calendar, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
-import { notes } from "@/data/notes";
+import { loadNotes } from "@/utils/contentLoader";
+import type { NoteMeta } from "@/utils/contentLoader";
 
 const LatestNotes = () => {
-  // Get the 3 most recent notes
-  const latestNotes = [...notes]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
+  const [latestNotes, setLatestNotes] = useState<NoteMeta[]>([]);
+
+  useEffect(() => {
+    const fetchNotes = async () => {
+      const notes = await loadNotes();
+      const sortedNotes = notes
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 3);
+      setLatestNotes(sortedNotes);
+    };
+
+    fetchNotes();
+  }, []);
 
   return (
     <section className="py-20 px-4">
