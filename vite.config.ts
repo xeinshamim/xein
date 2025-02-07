@@ -13,9 +13,11 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     Markdown({
-      mode: ['html'],
+      mode: ['html', 'toc', 'raw'],
       markdownIt: {
         html: true,
+        linkify: true,
+        typographer: true,
       },
     }),
     mode === 'development' && componentTagger(),
