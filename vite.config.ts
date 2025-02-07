@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     Markdown({
-      mode: ['html', 'toc'],
+      mode: 'html',
       markdownIt: {
         html: true,
       },

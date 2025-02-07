@@ -1,13 +1,31 @@
+
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { notes } from "@/data/notes";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Markdown from "react-markdown";
 import NotFound from "./NotFound";
+import { loadNotes } from "@/utils/contentLoader";
+import type { NoteMeta } from "@/utils/contentLoader";
 
 const Note = () => {
   const { id } = useParams();
-  const note = notes.find((n) => n.id === Number(id));
+  const [note, setNote] = useState<(NoteMeta & { content: string }) | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNote = async () => {
+      const notes = await loadNotes();
+      const foundNote = notes.find((n) => n.id === Number(id));
+      setNote(foundNote || null);
+      setLoading(false);
+    };
+
+    fetchNote();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!note) {
     return <NotFound />;
@@ -37,9 +55,10 @@ const Note = () => {
             </h1>
           </div>
           <div className="card">
-            <div className="card-content prose dark:prose-invert max-w-none">
-              <Markdown>{note.content}</Markdown>
-            </div>
+            <div 
+              className="card-content prose dark:prose-invert max-w-none"
+              dangerouslySetInnerHTML={{ __html: note.content }}
+            />
           </div>
         </article>
       </main>

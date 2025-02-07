@@ -1,11 +1,25 @@
-import { notes } from "@/data/notes";
+
+import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { FileText, Calendar, Tag } from "lucide-react";
+import { loadNotes } from "@/utils/contentLoader";
+import type { NoteMeta } from "@/utils/contentLoader";
 
 const Notes = () => {
+  const [notes, setNotes] = useState<NoteMeta[]>([]);
+
+  useEffect(() => {
+    const fetchNotes = async () => {
+      const loadedNotes = await loadNotes();
+      setNotes(loadedNotes);
+    };
+
+    fetchNotes();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
