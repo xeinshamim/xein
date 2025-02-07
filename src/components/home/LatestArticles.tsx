@@ -1,5 +1,5 @@
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { articles } from "@/data/articles";
 
@@ -21,38 +21,43 @@ const LatestArticles = () => {
             </button>
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="space-y-6">
           {latestArticles.map((article) => (
             <article
               key={article.id}
-              className="bg-card border border-border/50 p-6 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="bg-card hover:bg-accent/5 border border-border/50 rounded-lg p-6 transition-all duration-200 hover:-translate-y-1"
             >
-              <span className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm mb-3 inline-block">
-                {article.category}
-              </span>
-              <time className="text-sm text-muted-foreground block">
-                {article.date}
-              </time>
-              <Link to={`/articles/${article.id}`}>
-                <h3 className="text-xl font-semibold mt-2 mb-3 hover:text-primary transition-colors">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                <span className="px-3 py-1 bg-primary/10 rounded-full">
+                  {article.category}
+                </span>
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  <time>{article.date}</time>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                  <span>{article.readingTime}</span>
+                </div>
+              </div>
+              <h3 className="text-2xl font-semibold mb-3 text-foreground">
+                <Link 
+                  to={`/articles/${article.id}`}
+                  className="hover:text-primary transition-colors"
+                >
                   {article.title}
-                </h3>
-              </Link>
+                </Link>
+              </h3>
               <p className="text-muted-foreground mb-4 line-clamp-2">
                 {article.excerpt}
               </p>
-              <div className="flex items-center justify-between">
-                <Link 
-                  to={`/articles/${article.id}`}
-                  className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-                >
-                  Read More
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-                <span className="text-sm text-muted-foreground">
-                  {article.readingTime}
-                </span>
-              </div>
+              <Link
+                to={`/articles/${article.id}`}
+                className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+              >
+                Read More
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </article>
           ))}
         </div>
