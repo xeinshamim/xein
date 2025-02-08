@@ -34,10 +34,10 @@ const Notes = () => {
                   <Calendar className="w-4 h-4" />
                   <time>{note.date}</time>
                 </div>
-                <h2 className="text-2xl font-semibold mb-3 group">
+                <h2 className="text-2xl font-semibold mb-3">
                   <Link
                     to={`/notes/${note.id}`}
-                    className="hover:text-primary transition-colors"
+                    className="hover:text-[#0EA5E9] transition-colors duration-300"
                   >
                     {note.title}
                   </Link>
