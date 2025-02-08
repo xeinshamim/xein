@@ -39,7 +39,7 @@ const Navbar = () => {
             to="/" 
             className="text-2xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500"
           >
-            Portfolio
+            Muhammad Shamim
           </Link>
 
           {/* Desktop Navigation */}
