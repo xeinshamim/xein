@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -36,7 +37,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <Link 
             to="/" 
-            className="text-2xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600"
+            className="text-2xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500"
           >
             Portfolio
           </Link>
