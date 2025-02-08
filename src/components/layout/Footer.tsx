@@ -11,7 +11,7 @@ const Footer = () => {
               to="/" 
               className="text-2xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600"
             >
-              Portfolio
+              Muhammad Shamim
             </Link>
             <p className="text-muted-foreground">
               Building beautiful and functional web experiences.
