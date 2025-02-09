@@ -6,20 +6,13 @@ import { Github, Linkedin, Facebook, Mail, BookOpen } from "lucide-react";
 const Hero = () => {
   return (
     <section className="min-h-screen relative flex items-center justify-center overflow-hidden py-16 sm:py-24">
-      {/* Background with dotted pattern */}
+      {/* Background with vertical lines */}
       <div className="absolute inset-0 bg-black">
-        {/* Radial gradient for depth */}
         <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(0,0,0,0.7)_0%,_rgba(0,0,0,1)_100%)]" />
-        {/* Subtle dotted pattern */}
-        <div
-          className="absolute inset-0 bg-no-repeat bg-center bg-fixed opacity-20"
-          style={{
-            backgroundImage: `radial-gradient(circle, rgba(0,255,255,0.2) 1px, transparent 1px)`,
-            backgroundSize: "20px 20px",
-          }}
-        />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,_rgba(0,255,255,0.1)_0%,_rgba(0,255,255,0)_100%)] opacity-40" />
+        <div className="absolute inset-0 bg-no-repeat bg-center bg-fixed bg-[url('/grid-pattern.svg')] opacity-20" />
       </div>
-
+      
       <div className="container px-4 relative">
         <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-8 animate-fade-in">
           {/* Intro with Hand Wave */}
