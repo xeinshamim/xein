@@ -11,7 +11,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-navy-700 via-background to-background" />
       
       <div className="container px-4 relative">
-        <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
+        <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-8 animate-fade-in">
           {/* Intro with Hand Wave */}
           <div className="flex items-center justify-center gap-2 text-2xl sm:text-3xl">
             <span className="font-bold">Hey!</span>
@@ -19,7 +19,7 @@ const Hero = () => {
           </div>
 
           {/* Main Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-slide-in">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-slide-in -mt-2 sm:mt-0">
             I'm a{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-navy-500 animate-pulse-slow">
               Programmer
@@ -27,7 +27,7 @@ const Hero = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl md:text-3xl animate-slide-in">
+          <p className="text-xl sm:text-2xl md:text-3xl animate-slide-in -mt-2 sm:mt-0">
             I do all the setup{" "}
             <span className="text-primary font-semibold">for you</span>.
           </p>
