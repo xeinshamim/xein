@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="space-y-4">
             <Link 
               to="/" 
-              className="text-2xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from primary to cyan-500"
+              className="text-2xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500"
             >
               Muhammad Shamim
             </Link>
