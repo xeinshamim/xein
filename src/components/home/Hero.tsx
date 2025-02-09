@@ -40,7 +40,7 @@ const Hero = () => {
           {/* Social Links */}
           <div className="flex justify-center gap-4 sm:gap-6 pt-4 animate-fade-in">
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/xeinshamim"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors hover-lift"
@@ -48,7 +48,7 @@ const Hero = () => {
               <Linkedin className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
             <a
-              href="https://facebook.com"
+              href="https://facebook.com/XeinShamim"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors hover-lift"
@@ -56,7 +56,7 @@ const Hero = () => {
               <Facebook className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/xeinshamim"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors hover-lift"
@@ -72,7 +72,7 @@ const Hero = () => {
               <BookOpen className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
             <a
-              href="mailto:contact@example.com"
+              href="mailto:admin@muhammadshamim.pro"
               className="text-muted-foreground hover:text-primary transition-colors hover-lift"
             >
               <Mail className="h-5 w-5 sm:h-6 sm:w-6" />
