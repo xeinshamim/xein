@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -6,17 +7,8 @@ import { Github, Linkedin, Facebook, Mail, BookOpen } from "lucide-react";
 const Hero = () => {
   return (
     <section className="min-h-screen relative flex items-center justify-center overflow-hidden py-16 sm:py-24">
-      {/* Background gradient and dots effect */}
+      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-navy-700 via-background to-background" />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px)",
-          backgroundSize: "50px 50px",
-          opacity: 0.3,
-        }}
-      />
       
       <div className="container px-4 relative">
         <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-8 animate-fade-in">
@@ -47,19 +39,42 @@ const Hero = () => {
 
           {/* Social Links */}
           <div className="flex justify-center gap-4 sm:gap-6 pt-4 animate-fade-in">
-            <a href="https://linkedin.com/in/xeinshamim" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors hover-lift">
+            <a
+              href="https://linkedin.com/in/xeinshamim"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors hover-lift"
+            >
               <Linkedin className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
-            <a href="https://facebook.com/XeinShamim" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors hover-lift">
+            <a
+              href="https://facebook.com/XeinShamim"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors hover-lift"
+            >
               <Facebook className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
-            <a href="https://github.com/xeinshamim" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors hover-lift">
+            <a
+              href="https://github.com/xeinshamim"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors hover-lift"
+            >
               <Github className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
-            <a href="https://medium.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors hover-lift">
+            <a
+              href="https://medium.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-primary transition-colors hover-lift"
+            >
               <BookOpen className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
-            <a href="mailto:admin@muhammadshamim.pro" className="text-muted-foreground hover:text-primary transition-colors hover-lift">
+            <a
+              href="mailto:admin@muhammadshamim.pro"
+              className="text-muted-foreground hover:text-primary transition-colors hover-lift"
+            >
               <Mail className="h-5 w-5 sm:h-6 sm:w-6" />
             </a>
           </div>
@@ -79,6 +94,12 @@ const Hero = () => {
             </Link>
           </div>
         </div>
+      </div>
+
+      {/* Decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 bg-navy-500/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-64 sm:h-64 bg-navy-700/10 rounded-full blur-3xl animate-float" />
       </div>
     </section>
   );
