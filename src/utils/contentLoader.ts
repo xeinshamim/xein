@@ -4,7 +4,13 @@ import { Article, Note } from '@/types';
 // Load markdown content for articles
 export const loadArticleContent = async (id: number): Promise<string> => {
   try {
-    const response = await fetch(`/src/content/articles/${getArticleFilename(id)}`);
+    const filename = getArticleFilename(id);
+    if (!filename) {
+      console.warn(`No filename mapping found for article ID ${id}`);
+      return '';
+    }
+    
+    const response = await fetch(`/src/content/articles/${filename}`);
     if (!response.ok) return '';
     const content = await response.text();
     // Remove frontmatter if present
@@ -18,7 +24,13 @@ export const loadArticleContent = async (id: number): Promise<string> => {
 // Load markdown content for notes
 export const loadNoteContent = async (id: number): Promise<string> => {
   try {
-    const response = await fetch(`/src/content/notes/${getNoteFilename(id)}`);
+    const filename = getNoteFilename(id);
+    if (!filename) {
+      console.warn(`No filename mapping found for note ID ${id}`);
+      return '';
+    }
+    
+    const response = await fetch(`/src/content/notes/${filename}`);
     if (!response.ok) return '';
     const content = await response.text();
     // Remove frontmatter if present
@@ -29,7 +41,7 @@ export const loadNoteContent = async (id: number): Promise<string> => {
   }
 };
 
-// Helper function to get article filename by ID
+// Helper function to get article filename by ID with bounds checking
 const getArticleFilename = (id: number): string => {
   const filenames: { [key: number]: string } = {
     1: 'building-scalable-web-applications.md',
@@ -40,15 +52,19 @@ const getArticleFilename = (id: number): string => {
     6: 'advanced-typescript-patterns.md',
     7: 'serverless-architecture-patterns.md'
   };
+  
+  // Only return filename if ID exists in our mapping
   return filenames[id] || '';
 };
 
-// Helper function to get note filename by ID
+// Helper function to get note filename by ID with bounds checking
 const getNoteFilename = (id: number): string => {
   const filenames: { [key: number]: string } = {
     1: 'getting-started-with-react-hooks.md',
     2: 'typescript-best-practices.md',
     3: 'modern-css-layout.md'
   };
+  
+  // Only return filename if ID exists in our mapping
   return filenames[id] || '';
 };

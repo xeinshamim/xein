@@ -7,26 +7,31 @@ import Footer from "@/components/layout/Footer";
 import Markdown from "react-markdown";
 import NotFound from "./NotFound";
 import { loadNoteContent } from "@/utils/contentLoader";
+import { validateRouteId } from "@/lib/validation";
 
 const Note = () => {
   const { id } = useParams();
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
-  const note = notes.find((n) => n.id === Number(id));
+  
+  // Validate the ID parameter
+  const validatedId = validateRouteId(id);
+  const note = validatedId ? notes.find((n) => n.id === validatedId) : null;
 
   useEffect(() => {
     const loadContent = async () => {
-      if (note) {
+      if (note && validatedId) {
         setLoading(true);
-        const noteContent = await loadNoteContent(note.id);
+        const noteContent = await loadNoteContent(validatedId);
         setContent(noteContent);
         setLoading(false);
       }
     };
     loadContent();
-  }, [note]);
+  }, [note, validatedId]);
 
-  if (!note) {
+  // Return 404 for invalid IDs or non-existent notes
+  if (!validatedId || !note) {
     return <NotFound />;
   }
 

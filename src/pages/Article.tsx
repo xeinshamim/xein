@@ -8,26 +8,31 @@ import Markdown from "react-markdown";
 import NotFound from "./NotFound";
 import { articles } from "@/data/articles";
 import { loadArticleContent } from "@/utils/contentLoader";
+import { validateRouteId } from "@/lib/validation";
 
 const Article = () => {
   const { id } = useParams();
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
-  const article = articles.find((a) => a.id === Number(id));
+  
+  // Validate the ID parameter
+  const validatedId = validateRouteId(id);
+  const article = validatedId ? articles.find((a) => a.id === validatedId) : null;
 
   useEffect(() => {
     const loadContent = async () => {
-      if (article) {
+      if (article && validatedId) {
         setLoading(true);
-        const articleContent = await loadArticleContent(article.id);
+        const articleContent = await loadArticleContent(validatedId);
         setContent(articleContent);
         setLoading(false);
       }
     };
     loadContent();
-  }, [article]);
+  }, [article, validatedId]);
 
-  if (!article) {
+  // Return 404 for invalid IDs or non-existent articles
+  if (!validatedId || !article) {
     return <NotFound />;
   }
 
