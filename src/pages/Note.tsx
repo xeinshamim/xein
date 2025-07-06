@@ -1,13 +1,30 @@
+
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { notes } from "@/data/notes";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Markdown from "react-markdown";
 import NotFound from "./NotFound";
+import { loadNoteContent } from "@/utils/contentLoader";
 
 const Note = () => {
   const { id } = useParams();
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(true);
   const note = notes.find((n) => n.id === Number(id));
+
+  useEffect(() => {
+    const loadContent = async () => {
+      if (note) {
+        setLoading(true);
+        const noteContent = await loadNoteContent(note.id);
+        setContent(noteContent);
+        setLoading(false);
+      }
+    };
+    loadContent();
+  }, [note]);
 
   if (!note) {
     return <NotFound />;
@@ -38,7 +55,13 @@ const Note = () => {
           </div>
           <div className="card">
             <div className="card-content prose dark:prose-invert max-w-none">
-              <Markdown>{note.content}</Markdown>
+              {loading ? (
+                <div className="flex justify-center items-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                </div>
+              ) : (
+                <Markdown>{content}</Markdown>
+              )}
             </div>
           </div>
         </article>
