@@ -1,3 +1,11 @@
+---
+id: 5
+title: "Optimizing React Performance"
+excerpt: "Learn advanced techniques for optimizing React application performance."
+date: "2024-02-11"
+category: "React"
+readingTime: "15 min read"
+---
 
 # Optimizing React Performance
 

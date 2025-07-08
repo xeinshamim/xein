@@ -1,3 +1,11 @@
+---
+id: 4
+title: "Introduction to Web Security"
+excerpt: "Learn the fundamentals of web security and how to protect your applications."
+date: "2024-02-13"
+category: "Security"
+readingTime: "12 min read"
+---
 
 # Introduction to Web Security
 

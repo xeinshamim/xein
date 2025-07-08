@@ -1,3 +1,11 @@
+---
+id: 3
+title: "Mastering CSS Grid Layout"
+excerpt: "A comprehensive guide to mastering CSS Grid Layout for modern web development."
+date: "2024-02-15"
+category: "CSS"
+readingTime: "10 min read"
+---
 
 # Mastering CSS Grid Layout
 

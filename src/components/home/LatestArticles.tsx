@@ -1,13 +1,26 @@
 
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { articles } from "@/data/articles";
+import { getArticles } from "@/data/articles";
+import { useState, useEffect } from "react";
 
 const LatestArticles = () => {
-  // Get the 3 most recent articles
-  const latestArticles = [...articles]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
+  const [latestArticles, setLatestArticles] = useState<any[]>([]);
+
+  useEffect(() => {
+    const loadLatestArticles = async () => {
+      try {
+        const articles = await getArticles();
+        const latest = [...articles]
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          .slice(0, 3);
+        setLatestArticles(latest);
+      } catch (error) {
+        console.error('Failed to load latest articles:', error);
+      }
+    };
+    loadLatestArticles();
+  }, []);
 
   return (
     <section className="py-20 px-4 bg-accent/5">

@@ -1,13 +1,26 @@
 
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { notes } from "@/data/notes";
+import { getNotes } from "@/data/notes";
+import { useState, useEffect } from "react";
 
 const LatestNotes = () => {
-  // Get the 3 most recent notes
-  const latestNotes = [...notes]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
+  const [latestNotes, setLatestNotes] = useState<any[]>([]);
+
+  useEffect(() => {
+    const loadLatestNotes = async () => {
+      try {
+        const notes = await getNotes();
+        const latest = [...notes]
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          .slice(0, 3);
+        setLatestNotes(latest);
+      } catch (error) {
+        console.error('Failed to load latest notes:', error);
+      }
+    };
+    loadLatestNotes();
+  }, []);
 
   return (
     <section className="py-20 px-4">

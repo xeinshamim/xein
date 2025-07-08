@@ -1,4 +1,3 @@
-
 ---
 id: 2
 title: "The Future of Web Development"

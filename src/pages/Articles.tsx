@@ -1,20 +1,43 @@
 
-import { articles } from "@/data/articles";
+import { getArticles } from "@/data/articles";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { FileText, Calendar, Clock, Tag } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Articles = () => {
+  const [articles, setArticles] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadArticles = async () => {
+      try {
+        const articlesData = await getArticles();
+        setArticles(articlesData);
+      } catch (error) {
+        console.error('Failed to load articles:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadArticles();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-8 text-center">Articles</h1>
-          <div className="space-y-8">
-            {articles.map((article) => (
+          {loading ? (
+            <div className="flex justify-center items-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+            </div>
+          ) : (
+            <div className="space-y-8">
+              {articles.map((article) => (
               <article
                 key={article.id}
                 className="bg-card hover:bg-accent/5 border border-border/50 rounded-lg p-6 transition-all duration-200 hover:-translate-y-1"
@@ -51,8 +74,9 @@ const Articles = () => {
                   </Button>
                 </Link>
               </article>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </main>
       <Footer />

@@ -1,3 +1,11 @@
+---
+id: 7
+title: "Serverless Architecture Patterns"
+excerpt: "Understand serverless architecture patterns and best practices."
+date: "2024-02-07"
+category: "Architecture"
+readingTime: "8 min read"
+---
 
 # Serverless Architecture Patterns
 

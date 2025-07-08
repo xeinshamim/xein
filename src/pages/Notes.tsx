@@ -1,5 +1,6 @@
 
-import { notes } from "@/data/notes";
+import { getNotes } from "@/data/notes";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,14 +8,36 @@ import { Link } from "react-router-dom";
 import { FileText, Calendar, Tag } from "lucide-react";
 
 const Notes = () => {
+  const [notes, setNotes] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadNotes = async () => {
+      try {
+        const notesData = await getNotes();
+        setNotes(notesData);
+      } catch (error) {
+        console.error('Failed to load notes:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadNotes();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-8 text-center">Notes</h1>
-          <div className="space-y-8">
-            {notes.map((note) => (
+          {loading ? (
+            <div className="flex justify-center items-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+            </div>
+          ) : (
+            <div className="space-y-8">
+              {notes.map((note) => (
               <article
                 key={note.id}
                 className="bg-card hover:bg-accent/5 border border-border/50 rounded-lg p-6 transition-all duration-200 hover:-translate-y-1"
@@ -52,8 +75,9 @@ const Notes = () => {
                   </Button>
                 </Link>
               </article>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </main>
       <Footer />

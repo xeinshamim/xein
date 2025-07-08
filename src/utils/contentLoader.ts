@@ -1,6 +1,34 @@
 
 import { Article, Note } from '@/types';
 
+// Parse frontmatter from markdown content
+const parseFrontmatter = (content: string) => {
+  const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n/);
+  if (!frontmatterMatch) return { frontmatter: {}, content };
+  
+  const frontmatterText = frontmatterMatch[1];
+  const frontmatter: any = {};
+  
+  frontmatterText.split('\n').forEach(line => {
+    const [key, ...values] = line.split(':');
+    if (key && values.length) {
+      const value = values.join(':').trim();
+      if (value.startsWith('"') && value.endsWith('"')) {
+        frontmatter[key.trim()] = value.slice(1, -1);
+      } else if (value.startsWith('[') && value.endsWith(']')) {
+        frontmatter[key.trim()] = value.slice(1, -1).split(',').map(v => v.trim().replace(/"/g, ''));
+      } else {
+        frontmatter[key.trim()] = isNaN(Number(value)) ? value : Number(value);
+      }
+    }
+  });
+  
+  return {
+    frontmatter,
+    content: content.replace(/^---\n[\s\S]*?\n---\n/, '')
+  };
+};
+
 // Load markdown content for articles
 export const loadArticleContent = async (id: number): Promise<string> => {
   try {
@@ -10,11 +38,11 @@ export const loadArticleContent = async (id: number): Promise<string> => {
       return '';
     }
     
-    const response = await fetch(`/src/content/articles/${filename}`);
+    const response = await fetch(`/content/articles/${filename}`);
     if (!response.ok) return '';
     const content = await response.text();
-    // Remove frontmatter if present
-    return content.replace(/^---[\s\S]*?---\n/, '');
+    const { content: markdownContent } = parseFrontmatter(content);
+    return markdownContent;
   } catch (error) {
     console.error(`Failed to load article content for ID ${id}:`, error);
     return '';
@@ -30,15 +58,92 @@ export const loadNoteContent = async (id: number): Promise<string> => {
       return '';
     }
     
-    const response = await fetch(`/src/content/notes/${filename}`);
+    const response = await fetch(`/content/notes/${filename}`);
     if (!response.ok) return '';
     const content = await response.text();
-    // Remove frontmatter if present
-    return content.replace(/^---[\s\S]*?---\n/, '');
+    const { content: markdownContent } = parseFrontmatter(content);
+    return markdownContent;
   } catch (error) {
     console.error(`Failed to load note content for ID ${id}:`, error);
     return '';
   }
+};
+
+// Load and parse all articles from markdown files
+export const loadAllArticles = async (): Promise<Article[]> => {
+  const articleFiles = [
+    'building-scalable-web-applications.md',
+    'future-of-web-development.md', 
+    'mastering-css-grid-layout.md',
+    'introduction-to-web-security.md',
+    'optimizing-react-performance.md',
+    'advanced-typescript-patterns.md',
+    'serverless-architecture-patterns.md'
+  ];
+
+  const articles: Article[] = [];
+  
+  for (const filename of articleFiles) {
+    try {
+      const response = await fetch(`/content/articles/${filename}`);
+      if (response.ok) {
+        const content = await response.text();
+        const { frontmatter } = parseFrontmatter(content);
+        
+        if (frontmatter.id) {
+          articles.push({
+            id: frontmatter.id,
+            title: frontmatter.title || '',
+            content: '',
+            excerpt: frontmatter.excerpt || '',
+            date: frontmatter.date || '',
+            category: frontmatter.category || '',
+            readingTime: frontmatter.readingTime || ''
+          });
+        }
+      }
+    } catch (error) {
+      console.error(`Failed to load article ${filename}:`, error);
+    }
+  }
+  
+  return articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+};
+
+// Load and parse all notes from markdown files
+export const loadAllNotes = async (): Promise<Note[]> => {
+  const noteFiles = [
+    'getting-started-with-react-hooks.md',
+    'typescript-best-practices.md',
+    'modern-css-layout.md'
+  ];
+
+  const notes: Note[] = [];
+  
+  for (const filename of noteFiles) {
+    try {
+      const response = await fetch(`/content/notes/${filename}`);
+      if (response.ok) {
+        const content = await response.text();
+        const { frontmatter } = parseFrontmatter(content);
+        
+        if (frontmatter.id) {
+          notes.push({
+            id: frontmatter.id,
+            title: frontmatter.title || '',
+            content: '',
+            excerpt: frontmatter.excerpt || '',
+            date: frontmatter.date || '',
+            tags: frontmatter.tags || []
+          });
+        }
+      }
+    } catch (error) {
+      console.error(`Failed to load note ${filename}:`, error);
+    }
+  }
+  
+  return notes.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 };
 
 // Helper function to get article filename by ID with bounds checking

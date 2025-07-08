@@ -1,3 +1,11 @@
+---
+id: 6
+title: "Advanced TypeScript Patterns"
+excerpt: "Explore advanced TypeScript patterns and improve your type system knowledge."
+date: "2024-02-09"
+category: "TypeScript"
+readingTime: "10 min read"
+---
 
 # Advanced TypeScript Patterns
 

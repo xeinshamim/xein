@@ -1,4 +1,3 @@
-
 ---
 id: 3
 title: "Modern CSS Layout Techniques"
