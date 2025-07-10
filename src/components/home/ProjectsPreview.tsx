@@ -1,22 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { projects } from "@/data/projects";
 
 const ProjectsPreview = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "E-commerce Platform",
-      description: "A modern e-commerce platform built with React and Node.js",
-      tech: ["React", "Node.js", "MongoDB"],
-    },
-    {
-      id: 2,
-      title: "Task Management App",
-      description: "A collaborative task management application",
-      tech: ["Next.js", "TypeScript", "Prisma"],
-    },
-  ];
+  const featuredProjects = projects.filter(project => project.featured).slice(0, 2);
 
   return (
     <section className="py-20 px-4 bg-muted/50">
@@ -31,7 +19,7 @@ const ProjectsPreview = () => {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project) => (
+          {featuredProjects.map((project) => (
             <article
               key={project.id}
               className="bg-card hover:bg-accent/5 border border-border/50 p-6 rounded-lg transition-all duration-200 hover:-translate-y-1 animate-fade-in"
@@ -39,7 +27,7 @@ const ProjectsPreview = () => {
               <h3 className="text-xl font-semibold mb-3 hover:text-[#0EA5E9] transition-colors duration-300">{project.title}</h3>
               <p className="text-muted-foreground mb-4">{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech) => (
+                {project.technologies.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
                     className="px-3 py-1 bg-primary/10 rounded-full text-sm"

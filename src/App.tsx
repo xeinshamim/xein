@@ -7,6 +7,7 @@ import Article from "@/pages/Article";
 import Notes from "@/pages/Notes";
 import Note from "@/pages/Note";
 import Projects from "@/pages/Projects";
+import ProjectDemo from "@/pages/ProjectDemo";
 import Contact from "@/pages/Contact";
 import Privacy from "@/pages/Privacy";
 import Imprint from "@/pages/Imprint";
@@ -30,6 +31,7 @@ function App() {
         <Route path="/notes" element={<Notes />} />
         <Route path="/notes/:id" element={<Note />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/demos/:demoType" element={<ProjectDemo />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/imprint" element={<Imprint />} />
