@@ -34,9 +34,9 @@ const ProjectsPreview = () => {
           {projects.map((project) => (
             <article
               key={project.id}
-              className="glass p-6 rounded-lg transition-transform hover:-translate-y-1"
+              className="bg-card hover:bg-accent/5 border border-border/50 p-6 rounded-lg transition-all duration-200 hover:-translate-y-1 animate-fade-in"
             >
-              <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
+              <h3 className="text-xl font-semibold mb-3 hover:text-[#0EA5E9] transition-colors duration-300">{project.title}</h3>
               <p className="text-muted-foreground mb-4">{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((tech) => (
@@ -48,10 +48,12 @@ const ProjectsPreview = () => {
                   </span>
                 ))}
               </div>
-              <Link to={`/projects/${project.id}`}>
-                <Button variant="link" className="p-0">
-                  View Project
-                </Button>
+              <Link 
+                to={`/projects/${project.id}`}
+                className="inline-flex items-center text-primary hover:text-primary/80 transition-colors group"
+              >
+                View Project
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </article>
           ))}

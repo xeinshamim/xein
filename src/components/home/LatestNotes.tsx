@@ -38,7 +38,7 @@ const LatestNotes = () => {
           {latestNotes.map((note) => (
             <article
               key={note.id}
-              className="bg-card border border-border/50 p-6 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="bg-card hover:bg-accent/5 border border-border/50 p-6 rounded-lg transition-all duration-200 hover:-translate-y-1 animate-fade-in"
             >
               <div className="flex flex-wrap gap-2 mb-3">
                 {note.tags.slice(0, 2).map((tag) => (
@@ -52,7 +52,7 @@ const LatestNotes = () => {
               </div>
               <time className="text-sm text-muted-foreground">{note.date}</time>
               <Link to={`/notes/${note.id}`}>
-                <h3 className="text-xl font-semibold mt-2 mb-3 hover:text-primary transition-colors">
+                <h3 className="text-xl font-semibold mt-2 mb-3 hover:text-[#0EA5E9] transition-colors duration-300">
                   {note.title}
                 </h3>
               </Link>
@@ -61,10 +61,10 @@ const LatestNotes = () => {
               </p>
               <Link 
                 to={`/notes/${note.id}`}
-                className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                className="inline-flex items-center text-primary hover:text-primary/80 transition-colors group"
               >
                 Read More
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </article>
           ))}

@@ -38,7 +38,7 @@ const LatestArticles = () => {
           {latestArticles.map((article) => (
             <article
               key={article.id}
-              className="bg-card border border-border/50 p-6 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="bg-card hover:bg-accent/5 border border-border/50 p-6 rounded-lg transition-all duration-200 hover:-translate-y-1 animate-fade-in"
             >
               <span className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm mb-3 inline-block">
                 {article.category}
@@ -47,7 +47,7 @@ const LatestArticles = () => {
                 {article.date}
               </time>
               <Link to={`/articles/${article.id}`}>
-                <h3 className="text-xl font-semibold mt-2 mb-3 hover:text-primary transition-colors">
+                <h3 className="text-xl font-semibold mt-2 mb-3 hover:text-[#0EA5E9] transition-colors duration-300">
                   {article.title}
                 </h3>
               </Link>
@@ -57,10 +57,10 @@ const LatestArticles = () => {
               <div className="flex items-center justify-between">
                 <Link 
                   to={`/articles/${article.id}`}
-                  className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+                  className="inline-flex items-center text-primary hover:text-primary/80 transition-colors group"
                 >
                   Read More
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <span className="text-sm text-muted-foreground">
                   {article.readingTime}
