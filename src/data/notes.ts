@@ -27,14 +27,6 @@ const defaultNotes: Note[] = [
     excerpt: "Explore modern CSS layout techniques including Grid and Flexbox.",
     date: "2024-02-15",
     tags: ["CSS", "Web Design", "Layout"],
-  },
-  {
-    id: 4,
-    title: "Youre Awesome" ,
-    content: "",
-    excerpt: "Youre doing your best." ,
-    date: "2025-07-11" ,
-    tags: ["best", "awesome"],
   }
 ];
 
