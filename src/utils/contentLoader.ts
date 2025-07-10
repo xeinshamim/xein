@@ -1,4 +1,3 @@
-
 import { Article, Note } from '@/types';
 
 // Parse frontmatter from markdown content
@@ -73,7 +72,7 @@ export const loadNoteContent = async (id: number): Promise<string> => {
 export const loadAllArticles = async (): Promise<Article[]> => {
   const articleFiles = [
     'building-scalable-web-applications.md',
-    'future-of-web-development.md', 
+    'future-of-web-development.md',  
     'mastering-css-grid-layout.md',
     'introduction-to-web-security.md',
     'optimizing-react-performance.md',
@@ -115,7 +114,9 @@ export const loadAllNotes = async (): Promise<Note[]> => {
   const noteFiles = [
     'getting-started-with-react-hooks.md',
     'typescript-best-practices.md',
-    'modern-css-layout.md'
+    'modern-css-layout.md',
+    // Add your new note's filename here!
+    'beautiful-lines-for-coders.md' // <--- ADD THIS LINE (or whatever your file is named)
   ];
 
   const notes: Note[] = [];
@@ -167,7 +168,10 @@ const getNoteFilename = (id: number): string => {
   const filenames: { [key: number]: string } = {
     1: 'getting-started-with-react-hooks.md',
     2: 'typescript-best-practices.md',
-    3: 'modern-css-layout.md'
+    3: 'modern-css-layout.md',
+    // Add your new note's ID and filename here if it has a specific ID mapping
+    // For example, if your new note has id: 4
+    4: 'beautiful-lines-for-coders.md' // <--- ADD THIS LINE (and update ID if needed)
   };
   
   // Only return filename if ID exists in our mapping
