@@ -169,9 +169,7 @@ const getNoteFilename = (id: number): string => {
     1: 'getting-started-with-react-hooks.md',
     2: 'typescript-best-practices.md',
     3: 'modern-css-layout.md',
-    // Add your new note's ID and filename here if it has a specific ID mapping
-    // For example, if your new note has id: 4
-    4: 'beautiful-lines-for-coders.md' // <--- ADD THIS LINE (and update ID if needed)
+    4: 'beautiful-lines-for-coders.md',
   };
   
   // Only return filename if ID exists in our mapping
