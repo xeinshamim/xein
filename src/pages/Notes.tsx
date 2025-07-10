@@ -12,6 +12,10 @@ const Notes = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const loadNotes = async () => {
       try {
         const notesData = await getNotes();

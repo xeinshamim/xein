@@ -12,6 +12,10 @@ const Articles = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const loadArticles = async () => {
       try {
         const articlesData = await getArticles();

@@ -19,6 +19,10 @@ const Note = () => {
   const note = validatedId ? notes.find((n) => n.id === validatedId) : null;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const loadContent = async () => {
       if (note && validatedId) {
         setLoading(true);

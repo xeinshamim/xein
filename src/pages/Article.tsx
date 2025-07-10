@@ -20,6 +20,10 @@ const Article = () => {
   const article = validatedId ? articles.find((a) => a.id === validatedId) : null;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const loadContent = async () => {
       if (article && validatedId) {
         setLoading(true);
